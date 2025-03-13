@@ -14,7 +14,7 @@ public class Main {
         boolean player1WannaContinue = true;
 
         while (player1.getScore() <= 3500 || player2.getScore() <= 3500) {
-            //... full game
+            //todo -> complete full game
 
 
             while (player1WannaContinue) {

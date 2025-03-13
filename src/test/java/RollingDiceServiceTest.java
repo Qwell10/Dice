@@ -45,10 +45,12 @@ class RollingDiceServiceTest {
     }
 
     @Test
-    void countScore_countIdenticalNums() {
-        List<Integer> playerSelectedNums = List.of(1, 2, 5, 2, 1);
+    void countScore_countIdenticalNums1() {
+        List<Integer> playerSelectedNums = List.of(1, 2, 1, 1, 1);
 
-        rollingDiceService.countScore(playerSelectedNums);
+        int result = rollingDiceService.countScore(playerSelectedNums);
+
+        assertEquals(2000, result);
     }
 
 }
