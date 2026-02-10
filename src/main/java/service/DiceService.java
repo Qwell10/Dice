@@ -3,8 +3,12 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class DiceService {
+
+    Scanner sc = new Scanner(System.in);
+    Validation validation = new Validation();
 
     public List<Integer> rollDice(int amountDice) {
         Random random = new Random();
@@ -18,7 +22,8 @@ public class DiceService {
     }
 
     public void chooseDice(List<Integer> droppedDice) {
-        System.out.println("Dropped dice: ");
         System.out.println(droppedDice);
+        String choice = sc.nextLine();
+        System.out.println(validation.isNumeric(choice));
     }
 }

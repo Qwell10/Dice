@@ -14,6 +14,5 @@ public class Main {
 
         //player choose  dice
         diceService.chooseDice(droppedDice);
-
     }
 }
