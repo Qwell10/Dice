@@ -23,7 +23,21 @@ public class DiceService {
 
     public void chooseDice(List<Integer> droppedDice) {
         System.out.println(droppedDice);
-        String choice = sc.nextLine();
-        System.out.println(validation.isNumeric(choice));
+
+        boolean canContinue = true;
+
+        while (canContinue) {
+            String choice = sc.nextLine();
+
+            if (!validation.isNumeric(choice)) {
+                System.out.printf("%s is not number bro. Try again", choice);
+            } else canContinue = false;
+
+            int choiceInt = Integer.parseInt(choice);
+
+            if (!validation.isWithinRange(choiceInt)) {
+                System.out.printf("%d is not within range. Try again", choiceInt);
+            } else canContinue = false;
+        }
     }
 }
