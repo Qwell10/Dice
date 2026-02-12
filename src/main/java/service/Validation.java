@@ -11,7 +11,7 @@ public class Validation {
         }
     }
 
-    public boolean isWithinRange(int input) {
+    public boolean isNumber1_6(int input) {
         return input > 0 && input <= 6;
     }
 }

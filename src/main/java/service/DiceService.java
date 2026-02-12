@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class DiceService {
 
@@ -21,23 +22,40 @@ public class DiceService {
         return diceNumbers;
     }
 
-    public void chooseDice(List<Integer> droppedDice) {
+    public int chooseDice(List<Integer> droppedDice) {
         System.out.println(droppedDice);
 
-        boolean canContinue = true;
-
-        while (canContinue) {
+        while (true) {
+            System.out.println("choose dice: ");
             String choice = sc.nextLine();
 
             if (!validation.isNumeric(choice)) {
                 System.out.printf("%s is not number bro. Try again", choice);
-            } else canContinue = false;
+                continue;
+            }
 
             int choiceInt = Integer.parseInt(choice);
 
-            if (!validation.isWithinRange(choiceInt)) {
+            if (!validation.isNumber1_6(choiceInt)) {
                 System.out.printf("%d is not within range. Try again", choiceInt);
-            } else canContinue = false;
+                continue;
+            }
+            return choiceInt;
         }
+    }
+
+    public void saveDiceToPocket(List<Integer> droppedDice) {
+        List<Integer> takenDice = new ArrayList<>();
+
+        int index = getIndex(droppedDice, chooseDice(droppedDice));
+        //todo()
+    }
+
+    private int getIndex(List<Integer> droppedDice, int value) {
+        return IntStream.range(0, droppedDice.size())
+                .filter(i -> droppedDice.get(i) == value)
+                .findAny()
+                .orElse(-1);
+
     }
 }
