@@ -47,15 +47,15 @@ public class DiceService {
     public void saveDiceToPocket(List<Integer> droppedDice) {
         List<Integer> takenDice = new ArrayList<>();
 
-        int index = getIndex(droppedDice, chooseDice(droppedDice));
         //todo()
     }
 
-    private int getIndex(List<Integer> droppedDice, int value) {
+    //todo(test this method)
+    private int getScoreNumber(List<Integer> droppedDice, int value) {
         return IntStream.range(0, droppedDice.size())
                 .filter(i -> droppedDice.get(i) == value)
-                .findAny()
-                .orElse(-1);
-
+                .map(droppedDice::get)
+                .findFirst()
+                .orElse(0);
     }
 }

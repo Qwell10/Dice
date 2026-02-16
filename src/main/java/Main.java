@@ -12,7 +12,6 @@ public class Main {
         //player rolls dice
         List<Integer> droppedDice = diceService.rollDice(player.getAmountDice());
 
-        //player choose  dice
-        diceService.chooseDice(droppedDice);
+
     }
 }
