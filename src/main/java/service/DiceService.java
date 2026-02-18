@@ -44,16 +44,21 @@ public class DiceService {
         }
     }
 
-    public void saveDiceToPocket(List<Integer> droppedDice) {
-        List<Integer> takenDice = new ArrayList<>();
+    //todo(dodelat metody nize)
+    public void saveOneDiceToPocket(List<Integer> droppedDice, List<Integer> takenDice) {
+        System.out.println("Choose one dice:");
 
-        //todo()
+        String pick = sc.nextLine();
+        validation.isNumeric(pick);
+        int pickInt = Integer.parseInt(pick);
+
+        takenDice.add(pickInt);
+        droppedDice.remove(Integer.valueOf(pickInt));
     }
 
-    //todo(test this method)
-    private int getScoreNumber(List<Integer> droppedDice, int value) {
+    public int getScoreNumber(List<Integer> droppedDice, int searchingValue) {
         return IntStream.range(0, droppedDice.size())
-                .filter(i -> droppedDice.get(i) == value)
+                .filter(i -> droppedDice.get(i) == searchingValue)
                 .map(droppedDice::get)
                 .findFirst()
                 .orElse(0);
