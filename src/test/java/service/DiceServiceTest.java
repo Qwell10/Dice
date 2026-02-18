@@ -11,20 +11,20 @@ class DiceServiceTest {
 
     @Test
     void testGetScoreNumberHappyScenario() {
-        List<Integer> droppedDice = List.of(3, 1, 3, 6);
+        List<Integer> rolledDice = List.of(3, 1, 3, 6);
         int searchingValue = 1;
 
-        int scoreNumber = service.getScoreNumber(droppedDice, searchingValue);
+        int scoreNumber = service.getDieIfPresent(rolledDice, searchingValue);
 
         Assertions.assertEquals(1, scoreNumber);
     }
 
     @Test
     void testGetScoreReturn0() {
-        List<Integer> droppedDice = List.of(3, 4, 3, 6);
+        List<Integer> rolledDice = List.of(3, 4, 3, 6);
         int searchingValue = 1;
 
-        int scoreNumber = service.getScoreNumber(droppedDice, searchingValue);
+        int scoreNumber = service.getDieIfPresent(rolledDice, searchingValue);
 
         Assertions.assertEquals(0, scoreNumber);
     }

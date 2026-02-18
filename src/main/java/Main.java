@@ -10,7 +10,7 @@ public class Main {
         Player player = new Player();
 
         //player rolls dice
-        List<Integer> droppedDice = diceService.rollDice(player.getAmountDice());
+        List<Integer> rolledDice = diceService.rollDice(player.getAmountDice());
 
 
     }

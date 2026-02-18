@@ -22,8 +22,8 @@ public class DiceService {
         return diceNumbers;
     }
 
-    public int chooseDice(List<Integer> droppedDice) {
-        System.out.println(droppedDice);
+    public int chooseDice(List<Integer> rolledDice) {
+        System.out.println(rolledDice);
 
         while (true) {
             System.out.println("choose dice: ");
@@ -45,7 +45,7 @@ public class DiceService {
     }
 
     //todo(dodelat metody nize)
-    public void saveOneDiceToPocket(List<Integer> droppedDice, List<Integer> takenDice) {
+    public void saveOneDiceToPocket(List<Integer> rolledDice, List<Integer> takenDice) {
         System.out.println("Choose one dice:");
 
         String pick = sc.nextLine();
@@ -53,14 +53,20 @@ public class DiceService {
         int pickInt = Integer.parseInt(pick);
 
         takenDice.add(pickInt);
-        droppedDice.remove(Integer.valueOf(pickInt));
+        rolledDice.remove(Integer.valueOf(pickInt));
     }
 
-    public int getScoreNumber(List<Integer> droppedDice, int searchingValue) {
-        return IntStream.range(0, droppedDice.size())
-                .filter(i -> droppedDice.get(i) == searchingValue)
-                .map(droppedDice::get)
+
+    //todo - getDieIfPresent() change to boolean
+    public int getDieIfPresent(List<Integer> rolledDice, int searchingValue) {
+        return IntStream.range(0, rolledDice.size())
+                .filter(i -> rolledDice.get(i) == searchingValue)
+                .map(rolledDice::get)
                 .findFirst()
                 .orElse(0);
+    }
+
+    public boolean isDiePresent(List<Integer> rolledDice, int chosenDie) {
+        //todo
     }
 }
