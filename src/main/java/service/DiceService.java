@@ -57,16 +57,12 @@ public class DiceService {
     }
 
 
-    //todo - getDieIfPresent() change to boolean
+    //todo - refactor getDie()
     public int getDieIfPresent(List<Integer> rolledDice, int searchingValue) {
         return IntStream.range(0, rolledDice.size())
                 .filter(i -> rolledDice.get(i) == searchingValue)
                 .map(rolledDice::get)
                 .findFirst()
                 .orElse(0);
-    }
-
-    public boolean isDiePresent(List<Integer> rolledDice, int chosenDie) {
-        //todo
     }
 }
