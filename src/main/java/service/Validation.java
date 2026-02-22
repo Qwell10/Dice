@@ -17,7 +17,7 @@ public class Validation {
         return input > 0 && input <= 6;
     }
 
-    public boolean isDiePresent(List<Integer> rolledDice, int chosenDie) {
-        return rolledDice.contains(chosenDie);
+    public boolean isDiePresent(List<Integer> rolledDice, int pickedDie) {
+        return rolledDice.contains(pickedDie);
     }
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class DiceService {
 
@@ -22,29 +21,37 @@ public class DiceService {
         return diceNumbers;
     }
 
-    public int chooseDice(List<Integer> rolledDice) {
+    public int pickDie(List<Integer> rolledDice) {
         System.out.println(rolledDice);
 
         while (true) {
             System.out.println("choose dice: ");
-            String choice = sc.nextLine();
+            String pick = sc.nextLine();
 
-            if (!validation.isNumeric(choice)) {
-                System.out.printf("%s is not number bro. Try again", choice);
+            if (!validation.isNumeric(pick)) {
+                System.out.printf("%s is not number bro. Try again. %n", pick);
                 continue;
             }
 
-            int choiceInt = Integer.parseInt(choice);
+            int pickInt = Integer.parseInt(pick);
 
-            if (!validation.isNumber1_6(choiceInt)) {
-                System.out.printf("%d is not within range. Try again", choiceInt);
+            if (!validation.isNumber1_6(pickInt)) {
+                System.out.printf("%d is not within range. Try again. %n", pickInt);
                 continue;
             }
-            return choiceInt;
+
+            if (!validation.isDiePresent(rolledDice, pickInt)) {
+                System.out.printf("%d is not on table. Try again. %n", pickInt);
+                continue;
+            }
+
+            rolledDice.remove(Integer.valueOf(pickInt));
+
+            return pickInt;
         }
     }
 
-    //todo(dodelat metody nize)
+    //todo
     public void saveOneDiceToPocket(List<Integer> rolledDice, List<Integer> takenDice) {
         System.out.println("Choose one dice:");
 
@@ -54,15 +61,5 @@ public class DiceService {
 
         takenDice.add(pickInt);
         rolledDice.remove(Integer.valueOf(pickInt));
-    }
-
-
-    //todo - refactor getDie()
-    public int getDieIfPresent(List<Integer> rolledDice, int searchingValue) {
-        return IntStream.range(0, rolledDice.size())
-                .filter(i -> rolledDice.get(i) == searchingValue)
-                .map(rolledDice::get)
-                .findFirst()
-                .orElse(0);
     }
 }
