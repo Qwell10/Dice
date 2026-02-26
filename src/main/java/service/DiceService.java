@@ -21,11 +21,12 @@ public class DiceService {
         return diceNumbers;
     }
 
-    public int pickDie(List<Integer> rolledDice) {
+    //todo
+    public int pickDie(List<Integer> rolledDice, Scanner sc) {
         System.out.println(rolledDice);
 
         while (true) {
-            System.out.println("choose dice: ");
+            System.out.println("choose die: ");
             String pick = sc.nextLine();
 
             if (!validation.isNumeric(pick)) {
@@ -34,11 +35,6 @@ public class DiceService {
             }
 
             int pickInt = Integer.parseInt(pick);
-
-            if (!validation.isNumber1_6(pickInt)) {
-                System.out.printf("%d is not within range. Try again. %n", pickInt);
-                continue;
-            }
 
             if (!validation.isDiePresent(rolledDice, pickInt)) {
                 System.out.printf("%d is not on table. Try again. %n", pickInt);
@@ -51,15 +47,8 @@ public class DiceService {
         }
     }
 
-    //todo
-    public void saveOneDiceToPocket(List<Integer> rolledDice, List<Integer> takenDice) {
-        System.out.println("Choose one dice:");
 
-        String pick = sc.nextLine();
-        validation.isNumeric(pick);
-        int pickInt = Integer.parseInt(pick);
-
-        takenDice.add(pickInt);
-        rolledDice.remove(Integer.valueOf(pickInt));
+    public void saveOneDiceToPocket() {
+        //todo
     }
 }
