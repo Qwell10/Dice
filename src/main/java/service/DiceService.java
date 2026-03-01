@@ -1,5 +1,7 @@
 package service;
 
+import entity.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,6 +20,11 @@ public class DiceService {
             diceNumbers.add(number);
         }
         return diceNumbers;
+    }
+
+    //todo()
+    public void chooseDiceToScore() {
+
     }
 
     public int pickDie(List<Integer> rolledDice, Scanner sc) {
@@ -45,8 +52,12 @@ public class DiceService {
         }
     }
 
+    public void saveOneDieToPocket(List<Integer> rolledDice, Player player, Scanner sc) {
+        if (!rolledDice.isEmpty()) {
+            int pickedDie = pickDie(rolledDice, sc);
 
-    public void saveOneDiceToPocket() {
-        //todo
+            player.getPickedDice().add(pickedDie);
+
+        } else System.out.println("No more dice on table.");
     }
 }

@@ -3,14 +3,17 @@ package entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 public class Player {
-    int amountDice;
     int score;
+    List<Integer> pickedDice;
 
     public Player() {
-        this.amountDice = 6;
         this.score = 0;
+        this.pickedDice = new ArrayList<>();
     }
 }
