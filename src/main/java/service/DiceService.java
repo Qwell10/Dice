@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class DiceService {
 
-    Scanner sc = new Scanner(System.in);
     Validation validation = new Validation();
 
     public List<Integer> rollDice(int amountDice) {
@@ -21,7 +20,6 @@ public class DiceService {
         return diceNumbers;
     }
 
-    //todo
     public int pickDie(List<Integer> rolledDice, Scanner sc) {
         System.out.println(rolledDice);
 
