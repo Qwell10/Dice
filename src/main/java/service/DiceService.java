@@ -22,9 +22,35 @@ public class DiceService {
         return diceNumbers;
     }
 
-    //todo()
-    public void chooseDiceToScore() {
+    //todo(try in Main)
+    public void chooseDiceToScore(List<Integer> rolledDice, Player player, Scanner sc) {
+        String next = "y";
 
+        while (rolledDice.size() > 0 && next.equalsIgnoreCase("y")) {
+            saveOneDieToPocket(rolledDice, player, sc);
+
+            while (true) {
+                System.out.println("Do you want to pick another die? Y or N");
+
+                String playerWannaContinue = sc.nextLine();
+
+                if (playerWannaContinue.equalsIgnoreCase("Y") || playerWannaContinue.equalsIgnoreCase("N")) {
+                    next = playerWannaContinue;
+                    break;
+                } else System.out.println("Type only Y or N. Try again.");
+            }
+        }
+    }
+
+
+    public void saveOneDieToPocket(List<Integer> rolledDice, Player player, Scanner sc) {
+        if (!rolledDice.isEmpty()) {
+            int pickedDie = pickDie(rolledDice, sc);
+
+            player.getPickedDice().add(pickedDie);
+            System.out.printf("You picked: %d%n\"", pickedDie);
+
+        } else System.out.println("No more dice on table.");
     }
 
     public int pickDie(List<Integer> rolledDice, Scanner sc) {
@@ -50,14 +76,5 @@ public class DiceService {
 
             return pickInt;
         }
-    }
-
-    public void saveOneDieToPocket(List<Integer> rolledDice, Player player, Scanner sc) {
-        if (!rolledDice.isEmpty()) {
-            int pickedDie = pickDie(rolledDice, sc);
-
-            player.getPickedDice().add(pickedDie);
-
-        } else System.out.println("No more dice on table.");
     }
 }
