@@ -10,10 +10,12 @@ import java.util.List;
 @Setter
 public class Player {
     int score;
+    List<Integer> rolledDice;
     List<Integer> pickedDice;
 
     public Player() {
         this.score = 0;
+        this.rolledDice = new ArrayList<>();
         this.pickedDice = new ArrayList<>();
     }
 }

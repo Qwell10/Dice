@@ -26,7 +26,7 @@ public class DiceService {
     public void chooseDiceToScore(List<Integer> rolledDice, Player player, Scanner sc) {
         String next = "y";
 
-        while (rolledDice.size() > 0 && next.equalsIgnoreCase("y")) {
+        while (!rolledDice.isEmpty() && next.equalsIgnoreCase("y")) {
             saveOneDieToPocket(rolledDice, player, sc);
 
             while (true) {
@@ -57,8 +57,13 @@ public class DiceService {
         System.out.println(rolledDice);
 
         while (true) {
-            System.out.println("choose die: ");
+            System.out.println("Choose a die (or type 'N' to stop): ");
             String pick = sc.nextLine();
+
+            //todo(option to let player stop picking die)
+            if(pick.equalsIgnoreCase("n")) {
+                return 0;
+            }
 
             if (!validation.isNumeric(pick)) {
                 System.out.printf("%s is not number bro. Try again. %n", pick);

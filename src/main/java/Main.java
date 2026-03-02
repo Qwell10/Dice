@@ -6,12 +6,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        DiceService diceService = new DiceService();
-        Player player = new Player();
         Scanner sc = new Scanner(System.in);
+        DiceService service = new DiceService();
+        Player player1 = new Player();
+        Player player2 = new Player();
 
+        player1.setRolledDice(service.rollDice(6));
 
-        diceService.chooseDiceToScore();
+        service.chooseDiceToScore(player1.getRolledDice(), player1, sc);
 
     }
 }
