@@ -22,35 +22,32 @@ public class DiceService {
         return diceNumbers;
     }
 
-    //todo(try in Main)
     public void chooseDiceToScore(List<Integer> rolledDice, Player player, Scanner sc) {
-        String next = "y";
+        while (!rolledDice.isEmpty()) {
 
-        while (!rolledDice.isEmpty() && next.equalsIgnoreCase("y")) {
-            saveOneDieToPocket(rolledDice, player, sc);
+            int result = saveOneDieToPocket(rolledDice, player, sc);
 
-            while (true) {
-                System.out.println("Do you want to pick another die? Y or N");
-
-                String playerWannaContinue = sc.nextLine();
-
-                if (playerWannaContinue.equalsIgnoreCase("Y") || playerWannaContinue.equalsIgnoreCase("N")) {
-                    next = playerWannaContinue;
-                    break;
-                } else System.out.println("Type only Y or N. Try again.");
+            if (result == 0) {
+                break;
             }
         }
     }
 
-
-    public void saveOneDieToPocket(List<Integer> rolledDice, Player player, Scanner sc) {
+    public int saveOneDieToPocket(List<Integer> rolledDice, Player player, Scanner sc) {
         if (!rolledDice.isEmpty()) {
             int pickedDie = pickDie(rolledDice, sc);
 
-            player.getPickedDice().add(pickedDie);
-            System.out.printf("You picked: %d%n\"", pickedDie);
+            if (pickedDie != 0) {
+                player.getPickedDice().add(pickedDie);
+                System.out.printf("You picked: %d%n", pickedDie);
+            }
 
-        } else System.out.println("No more dice on table.");
+            return pickedDie;
+
+        } else {
+            System.out.println("No more dice on table.");
+            return 0;
+        }
     }
 
     public int pickDie(List<Integer> rolledDice, Scanner sc) {
@@ -60,8 +57,7 @@ public class DiceService {
             System.out.println("Choose a die (or type 'N' to stop): ");
             String pick = sc.nextLine();
 
-            //todo(option to let player stop picking die)
-            if(pick.equalsIgnoreCase("n")) {
+            if (pick.equalsIgnoreCase("n")) {
                 return 0;
             }
 
