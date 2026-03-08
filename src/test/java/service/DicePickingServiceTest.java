@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class DiceServiceTest {
+class DicePickingServiceTest {
 
-    DiceService service = new DiceService();
+    DicePickingService service = new DicePickingService();
 
     @Test
     void pickDie() {

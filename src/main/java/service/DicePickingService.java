@@ -1,13 +1,11 @@
 package service;
 
-import entity.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class DiceService {
+public class DicePickingService {
 
     Validation validation = new Validation();
 
@@ -22,10 +20,10 @@ public class DiceService {
         return diceNumbers;
     }
 
-    public void chooseDiceToScore(List<Integer> rolledDice, Player player, Scanner sc) {
+    public void chooseDiceToScore(List<Integer> rolledDice, List<Integer> pickedDice, Scanner sc) {
         while (!rolledDice.isEmpty()) {
 
-            int result = saveOneDieToPocket(rolledDice, player, sc);
+            int result = saveOneDieToPocket(rolledDice, pickedDice, sc);
 
             if (result == 0) {
                 break;
@@ -33,12 +31,12 @@ public class DiceService {
         }
     }
 
-    public int saveOneDieToPocket(List<Integer> rolledDice, Player player, Scanner sc) {
+    public int saveOneDieToPocket(List<Integer> rolledDice, List<Integer> pickedDice, Scanner sc) {
         if (!rolledDice.isEmpty()) {
             int pickedDie = pickDie(rolledDice, sc);
 
             if (pickedDie != 0) {
-                player.getPickedDice().add(pickedDie);
+                pickedDice.add(pickedDie);
                 System.out.printf("You picked: %d%n", pickedDie);
             }
 
@@ -54,7 +52,7 @@ public class DiceService {
         System.out.println(rolledDice);
 
         while (true) {
-            System.out.println("Choose a die (or type 'N' to stop): ");
+            System.out.println("Pick a die (or type 'N' to stop): ");
             String pick = sc.nextLine();
 
             if (pick.equalsIgnoreCase("n")) {
