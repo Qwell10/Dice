@@ -55,4 +55,22 @@ class ScoringServiceTest {
 
         Assertions.assertFalse(result);
     }
+
+    @Test
+    void hasInvalidDice_true() {
+        int[] diceCounts = {0, 2, 0, 2};
+
+        boolean result = service.hasInvalidDice(diceCounts);
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void hasInvalidDice_false() {
+        int[] diceCounts = {0, 2, 0, 3};
+
+        boolean result = service.hasInvalidDice(diceCounts);
+
+        Assertions.assertFalse(result);
+    }
 }

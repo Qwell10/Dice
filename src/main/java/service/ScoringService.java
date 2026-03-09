@@ -34,7 +34,14 @@ public class ScoringService {
     }
 
     public boolean hasInvalidDice(int[] diceCounts) {
-        //todo()
-        return true;
+        for (int i = 2; i < diceCounts.length; i++) {
+            if (i == 5) {
+                continue;
+            }
+            if (diceCounts[i] != 0 && diceCounts[i] < 3) {
+                return true;
+            }
+        }
+        return false;
     }
 }
