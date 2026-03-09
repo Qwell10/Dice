@@ -12,10 +12,9 @@ class ScoringServiceTest {
 
     @Test
     void getDiceCounts() {
-        Player player = new Player();
-
         int[] result = service.getDiceCounts(List.of(1, 5, 5, 5));
 
+        Assertions.assertEquals(0, result[0]);
         Assertions.assertEquals(1, result[1]);
         Assertions.assertEquals(3, result[5]);
     }
@@ -72,5 +71,32 @@ class ScoringServiceTest {
         boolean result = service.hasInvalidDice(diceCounts);
 
         Assertions.assertFalse(result);
+    }
+
+    @Test
+    void calculateScore_LargeStraight() {
+        int[] diceCounts = {0,1,1,1,1,1,1};
+
+        int result = service.calculateScore(diceCounts);
+
+        Assertions.assertEquals(3000, result);
+    }
+
+    @Test
+    void calculateScore_invalidDice() {
+        int[] diceCounts = {0,1,2,1,1,1,0};
+
+        int result = service.calculateScore(diceCounts);
+
+        Assertions.assertEquals(-1, result);
+    }
+
+    @Test
+    void calculateScore_smallStraight_and_1() {
+        int[] diceCounts = {0,2,1,1,1,1,0};
+
+        int result = service.calculateScore(diceCounts);
+
+        Assertions.assertEquals(1600, result);
     }
 }

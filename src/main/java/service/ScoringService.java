@@ -29,8 +29,8 @@ public class ScoringService {
 
     //[0][1][1][1][1][1][0]
     public boolean isSmallStraight(int[] diceCounts) {
-        return (diceCounts[1] == 1 && diceCounts[2] == 1 && diceCounts[3] == 1 && diceCounts[4] == 1 && diceCounts[5] == 1) ||
-                (diceCounts[2] == 1 && diceCounts[3] == 1 && diceCounts[4] == 1 && diceCounts[5] == 1 && diceCounts[6] == 1);
+        return (diceCounts[1] >= 1 && diceCounts[2] == 1 && diceCounts[3] == 1 && diceCounts[4] == 1 && diceCounts[5] >= 1) ||
+                (diceCounts[2] == 1 && diceCounts[3] == 1 && diceCounts[4] == 1 && diceCounts[5] >= 1 && diceCounts[6] == 1);
     }
 
     public boolean hasInvalidDice(int[] diceCounts) {
@@ -43,5 +43,29 @@ public class ScoringService {
             }
         }
         return false;
+    }
+
+    public int calculateScore(int[] diceCounts) {
+        if (isLargeStraight(diceCounts)) {
+            return 3000;
+        }
+
+        if (isSmallStraight(diceCounts) && diceCounts[1] == 2) {
+            return 1600;
+        } else if (isSmallStraight(diceCounts) && diceCounts[5] == 2) {
+            return 1550;
+        } else if (isSmallStraight(diceCounts)) {
+            return 1500;
+        }
+
+        if (hasInvalidDice(diceCounts)) {
+            return -1;
+        }
+
+        //todo()
+
+        int score = 0;
+
+        return score;
     }
 }
