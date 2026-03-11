@@ -1,6 +1,5 @@
 package service;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ScoringService {
@@ -46,7 +45,10 @@ public class ScoringService {
         return false;
     }
 
-    public int calculateScore(int[] diceCounts) {
+
+    public int calculateScore(List<Integer> pickedDice) {
+        int[] diceCounts = getDiceCounts(pickedDice);
+
         if (isLargeStraight(diceCounts)) {
             return 3000;
         }
@@ -63,18 +65,29 @@ public class ScoringService {
             return -1;
         }
 
-        //todo()
-
         int score = 0;
 
         score += calculateOnes(diceCounts);
-        score += calculateTwos(diceCounts);
-        score += calculateThrees(diceCounts);
-        score += calculateFours(diceCounts);
         score += calculateFives(diceCounts);
-        score += calculateSixes(diceCounts);
+        score += calculateStandardDice(diceCounts, 2);
+        score += calculateStandardDice(diceCounts, 3);
+        score += calculateStandardDice(diceCounts, 4);
+        score += calculateStandardDice(diceCounts, 6);
 
         return score;
+    }
+
+
+    private int calculateStandardDice(int[] diceCounts, int dieValue) {
+        if (diceCounts[dieValue] == 0) {
+            return 0;
+        } else if (diceCounts[dieValue] == 3) {
+            return (dieValue * 100);
+        } else if (diceCounts[dieValue] == 4) {
+            return (dieValue * 100) * 2;
+        } else if (diceCounts[dieValue] == 5) {
+            return (dieValue * 100) * 4;
+        } else return (dieValue * 100) * 8;
     }
 
     private int calculateOnes(int[] diceCounts) {
@@ -93,43 +106,6 @@ public class ScoringService {
         } else return 8000;
     }
 
-    private int calculateTwos(int[] diceCounts) {
-        if (diceCounts[2] == 0) {
-            return 0;
-        } else if (diceCounts[2] == 3) {
-            return 200;
-        } else if (diceCounts[2] == 4) {
-            return 400;
-        } else if (diceCounts[2] == 5) {
-            return 800;
-        } else return 1600;
-    }
-
-    private int calculateThrees(int[] diceCounts) {
-        if (diceCounts[3] == 0) {
-            return 0;
-        } else if (diceCounts[3] == 3) {
-            return 300;
-        } else if (diceCounts[3] == 4) {
-            return 600;
-        } else if (diceCounts[3] == 5) {
-            return 1200;
-        } else return 2400;
-    }
-
-
-    private int calculateFours(int[] diceCounts) {
-        if (diceCounts[4] == 0) {
-            return 0;
-        } else if (diceCounts[4] == 3) {
-            return 400;
-        } else if (diceCounts[4] == 4) {
-            return 800;
-        } else if (diceCounts[4] == 5) {
-            return 1600;
-        } else return 3200;
-    }
-
     private int calculateFives(int[] diceCounts) {
         if (diceCounts[5] == 0) {
             return 0;
@@ -144,17 +120,5 @@ public class ScoringService {
         } else if (diceCounts[5] == 5) {
             return 2000;
         } else return 4000;
-    }
-
-    private int calculateSixes(int[] diceCounts) {
-        if (diceCounts[6] == 0) {
-            return 0;
-        } else if (diceCounts[6] == 3) {
-            return 600;
-        } else if (diceCounts[6] == 4) {
-            return 1200;
-        } else if (diceCounts[6] == 5) {
-            return 2400;
-        } else return 4800;
     }
 }

@@ -1,6 +1,5 @@
 package service;
 
-import entity.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -73,6 +72,8 @@ class ScoringServiceTest {
         Assertions.assertFalse(result);
     }
 
+    //todo()
+
     @Test
     void calculateScore_LargeStraight() {
         int[] diceCounts = {0,1,1,1,1,1,1};
@@ -99,4 +100,14 @@ class ScoringServiceTest {
 
         Assertions.assertEquals(1600, result);
     }
+
+    @Test
+    void calculateScore() {
+        int[] diceCounts =  {0,2,3,0,0,1,0};
+
+        int result = service.calculateScore(diceCounts);
+
+        Assertions.assertEquals(450, result);
+    }
+
 }
