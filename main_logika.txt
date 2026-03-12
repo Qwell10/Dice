@@ -1,0 +1,8 @@
+hrac haze kostky
+
+kontrola jestli muze skorovat
+
+vybira si z kostek
+
+skoruje/vybral spatne kostky -> hraje druhy hrac
+
