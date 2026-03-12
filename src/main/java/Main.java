@@ -34,6 +34,8 @@ public class Main {
 
                 dicePickingService.chooseDiceToScore(rolledDice, player1.getPickedDice(), sc);
 
+                //todo canRollAgain()
+
                 int score = scoringService.calculateScore(player1.getPickedDice());
 
                 player1.setScore(score);
