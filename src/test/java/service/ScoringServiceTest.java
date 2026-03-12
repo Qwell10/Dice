@@ -54,20 +54,21 @@ class ScoringServiceTest {
         Assertions.assertFalse(result);
     }
 
+
     @Test
     void hasInvalidDice_true() {
-        int[] diceCounts = {0, 2, 0, 2};
+        List<Integer> pickedDice = List.of(1, 1, 3, 3);
 
-        boolean result = service.hasInvalidDice(diceCounts);
+        boolean result = service.hasInvalidDice(pickedDice);
 
         Assertions.assertTrue(result);
     }
 
     @Test
     void hasInvalidDice_false() {
-        int[] diceCounts = {0, 2, 0, 3};
+        List<Integer> pickedDice = List.of(1, 1, 3, 3, 3);
 
-        boolean result = service.hasInvalidDice(diceCounts);
+        boolean result = service.hasInvalidDice(pickedDice);
 
         Assertions.assertFalse(result);
     }

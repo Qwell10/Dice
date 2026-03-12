@@ -33,7 +33,20 @@ public class ScoringService {
                 (diceCounts[2] == 1 && diceCounts[3] == 1 && diceCounts[4] == 1 && diceCounts[5] >= 1 && diceCounts[6] == 1);
     }
 
-    public boolean hasInvalidDice(int[] diceCounts) {
+
+    //todo()
+/*
+    public boolean canRollAgain(List<Integer> rolledDice) {
+        if (hasInvalidDice(getDiceCounts(rolledDice))) {
+            return false;
+        }
+
+    }
+*/
+
+    public boolean hasInvalidDice(List<Integer> pickedDice) {
+        int[] diceCounts = getDiceCounts(pickedDice);
+
         for (int i = 2; i < diceCounts.length; i++) {
             if (i == 5) {
                 continue;
@@ -61,7 +74,7 @@ public class ScoringService {
             return 1500;
         }
 
-        if (hasInvalidDice(diceCounts)) {
+        if (hasInvalidDice(pickedDice)) {
             return -1;
         }
 
