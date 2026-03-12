@@ -72,42 +72,39 @@ class ScoringServiceTest {
         Assertions.assertFalse(result);
     }
 
-    //todo()
-
     @Test
     void calculateScore_LargeStraight() {
-        int[] diceCounts = {0,1,1,1,1,1,1};
+        List<Integer> pickedDice = List.of(1, 2, 3, 4, 5, 6);
 
-        int result = service.calculateScore(diceCounts);
+        int result = service.calculateScore(pickedDice);
 
         Assertions.assertEquals(3000, result);
     }
 
     @Test
     void calculateScore_invalidDice() {
-        int[] diceCounts = {0,1,2,1,1,1,0};
+        List<Integer> pickedDice = List.of(1, 2, 2, 3, 4, 5);
 
-        int result = service.calculateScore(diceCounts);
+        int result = service.calculateScore(pickedDice);
 
         Assertions.assertEquals(-1, result);
     }
 
     @Test
     void calculateScore_smallStraight_and_1() {
-        int[] diceCounts = {0,2,1,1,1,1,0};
+        List<Integer> pickedDice = List.of(1, 1, 2, 3, 4, 5);
 
-        int result = service.calculateScore(diceCounts);
+        int result = service.calculateScore(pickedDice);
 
         Assertions.assertEquals(1600, result);
     }
 
     @Test
     void calculateScore() {
-        int[] diceCounts =  {0,2,3,0,0,1,0};
+        List<Integer> pickedDice = List.of(1, 1, 2, 2, 2, 5);
 
-        int result = service.calculateScore(diceCounts);
+        int result = service.calculateScore(pickedDice);
 
         Assertions.assertEquals(450, result);
     }
-
 }
