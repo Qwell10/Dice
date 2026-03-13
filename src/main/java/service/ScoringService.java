@@ -33,13 +33,6 @@ public class ScoringService {
                 (diceCounts[2] == 1 && diceCounts[3] == 1 && diceCounts[4] == 1 && diceCounts[5] >= 1 && diceCounts[6] == 1);
     }
 
-
-    //todo()
-    public boolean canRollAgain(List<Integer> rolledDice) {
-        return !hasInvalidDice(getDiceCounts(rolledDice));
-
-    }
-
     public boolean hasInvalidDice(List<Integer> pickedDice) {
         int[] diceCounts = getDiceCounts(pickedDice);
 

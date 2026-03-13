@@ -22,23 +22,21 @@ public class Main {
         players.add(player2);
 
         //todo (kdyz hrac vybere alespon jednu platnou kostku, muze hazet znovu)
-        while (player1.getScore() != 6000 || player2.getScore() != 6000) {
+        while (player1.getScore() < 6000 && player2.getScore() < 6000) {
             for (Player player : players) {
-                System.out.println(player1.getName() + " score: " + player1.getScore());
+                System.out.println(player.getName() + " score: " + player.getScore());
 
                 List<Integer> rolledDice = dicePickingService.rollDice(6);
 
-                if(scoringService.hasInvalidDice(player1.getPickedDice())) {
+                if(scoringService.hasInvalidDice(player.getPickedDice())) {
                     continue;
                 }
 
-                dicePickingService.chooseDiceToScore(rolledDice, player1.getPickedDice(), sc);
+                dicePickingService.chooseDiceToScore(rolledDice, player.getPickedDice(), sc);
 
-                //todo canRollAgain()
+                int score = scoringService.calculateScore(player.getPickedDice());
 
-                int score = scoringService.calculateScore(player1.getPickedDice());
-
-                player1.setScore(score);
+                player.setScore(player.getScore() + score);
 
                 System.out.println("You scored: " + score);
             }
