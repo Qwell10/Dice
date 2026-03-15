@@ -1,10 +1,10 @@
-package service;
+package com.dice.service;
 
 import java.util.List;
 
 public class ScoringService {
 
-    int[] getDiceCounts(List<Integer> pickedDice) {
+    public int[] getDiceCounts(List<Integer> pickedDice) {
         int[] diceCounts = new int[7];
 
         for (int die : pickedDice) {

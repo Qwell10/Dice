@@ -1,4 +1,4 @@
-package service;
+package com.dice.service;
 
 import java.util.ArrayList;
 import java.util.List;

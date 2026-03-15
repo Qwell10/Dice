@@ -1,24 +1,14 @@
-import entity.Player;
-import org.springframework.boot.WebApplicationType;
-import service.DicePickingService;
-import service.ScoringService;
-import service.Validation;
-
+import com.dice.entity.Player;
+import com.dice.service.DicePickingService;
+import com.dice.service.ScoringService;
+import com.dice.service.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
-    }
-}
-
-/*
         Scanner sc = new Scanner(System.in);
 
         DicePickingService dicePickingService = new DicePickingService();
@@ -66,4 +56,4 @@ public class Main {
             Thread.currentThread().interrupt();
         }
     }
-*/
+}

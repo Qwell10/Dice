@@ -1,5 +1,6 @@
 package service;
 
+import com.dice.service.ScoringService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

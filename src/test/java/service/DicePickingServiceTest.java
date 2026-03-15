@@ -1,5 +1,6 @@
 package service;
 
+import com.dice.service.DicePickingService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

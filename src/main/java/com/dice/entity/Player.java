@@ -1,4 +1,4 @@
-package entity;
+package com.dice.entity;
 
 import lombok.Getter;
 import lombok.Setter;
