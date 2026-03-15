@@ -1,4 +1,5 @@
 import entity.Player;
+import org.springframework.boot.WebApplicationType;
 import service.DicePickingService;
 import service.ScoringService;
 import service.Validation;
@@ -13,7 +14,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-        // Tento jediný řádek nastartuje celý server
         SpringApplication.run(Main.class, args);
     }
 }
