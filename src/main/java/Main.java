@@ -3,13 +3,22 @@ import service.DicePickingService;
 import service.ScoringService;
 import service.Validation;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
+        // Tento jediný řádek nastartuje celý server
+        SpringApplication.run(Main.class, args);
+    }
+}
 
+/*
         Scanner sc = new Scanner(System.in);
 
         DicePickingService dicePickingService = new DicePickingService();
@@ -35,16 +44,16 @@ public class Main {
                 if (validation.isRollScorable(rolledDice)) {
                     dicePickingService.chooseDiceToScore(rolledDice, player.getPickedDice(), sc);
 
-                }else System.out.println("You failed");
+                } else System.out.println("You failed");
 
                 System.out.println();
 
 
-           //     int score = scoringService.calculateScore(player.getPickedDice());
+                //     int score = scoringService.calculateScore(player.getPickedDice());
 
-           //     player.setScore(player.getScore() + score);
+                //     player.setScore(player.getScore() + score);
 
-           //     System.out.println("You scored: " + score);
+                //     System.out.println("You scored: " + score);
             }
         }
     }
@@ -57,4 +66,4 @@ public class Main {
             Thread.currentThread().interrupt();
         }
     }
-}
+*/
