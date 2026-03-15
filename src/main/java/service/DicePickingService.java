@@ -49,10 +49,8 @@ public class DicePickingService {
     }
 
     public int pickDie(List<Integer> rolledDice, Scanner sc) {
-        System.out.println(rolledDice);
-
         while (true) {
-            System.out.println("Pick a die (or type 'N' to stop): ");
+            System.out.println("\nPick a die (or type 'N' to stop): ");
             String pick = sc.nextLine();
 
             if (pick.equalsIgnoreCase("n")) {

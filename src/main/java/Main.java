@@ -1,6 +1,7 @@
 import entity.Player;
 import service.DicePickingService;
 import service.ScoringService;
+import service.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ public class Main {
 
         DicePickingService dicePickingService = new DicePickingService();
         ScoringService scoringService = new ScoringService();
+        Validation validation = new Validation();
 
         Player player1 = new Player("Player 1");
         Player player2 = new Player("Player 2");
@@ -21,21 +23,38 @@ public class Main {
         players.add(player1);
         players.add(player2);
 
-        //todo (kdyz hrac vybere alespon jednu platnou kostku, muze hazet znovu)
         while (player1.getScore() < 6000 && player2.getScore() < 6000) {
             for (Player player : players) {
-                System.out.println(player.getName() + " score: " + player.getScore());
+
+                System.out.println(player.getName() + " score: " + player.getScore() + "\n");
+                pause();
 
                 List<Integer> rolledDice = dicePickingService.rollDice(6);
+                System.out.println(rolledDice);
 
-                dicePickingService.chooseDiceToScore(rolledDice, player.getPickedDice(), sc);
+                if (validation.isRollScorable(rolledDice)) {
+                    dicePickingService.chooseDiceToScore(rolledDice, player.getPickedDice(), sc);
 
-                int score = scoringService.calculateScore(player.getPickedDice());
+                }else System.out.println("You failed");
 
-                player.setScore(player.getScore() + score);
+                System.out.println();
 
-                System.out.println("You scored: " + score);
+
+           //     int score = scoringService.calculateScore(player.getPickedDice());
+
+           //     player.setScore(player.getScore() + score);
+
+           //     System.out.println("You scored: " + score);
             }
+        }
+    }
+
+    public static void pause() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println("Thread was interrupted.");
+            Thread.currentThread().interrupt();
         }
     }
 }
