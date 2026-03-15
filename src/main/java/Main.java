@@ -28,10 +28,6 @@ public class Main {
 
                 List<Integer> rolledDice = dicePickingService.rollDice(6);
 
-                if(scoringService.hasInvalidDice(player.getPickedDice())) {
-                    continue;
-                }
-
                 dicePickingService.chooseDiceToScore(rolledDice, player.getPickedDice(), sc);
 
                 int score = scoringService.calculateScore(player.getPickedDice());
