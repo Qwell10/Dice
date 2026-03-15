@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Kostky - Frontend Test</title>
+    <style>
+        /* CSS: Tady dáváme hře vzhled (barvy, tvary, animace) */
+        body {
+            background-color: #2E7D32; /* Zelená barva jako stůl v kasinu */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .dice-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .die {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            color: black;
+            font-size: 40px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px; /* Zakulacené rohy */
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.1s;
+        }
+
+        /* Třída, která se přidá, když kostka "letí" */
+        .rolling {
+            animation: rollAnimation 0.5s infinite linear;
+        }
+
+        @keyframes rollAnimation {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0px 5px 0px #e67e22;
+            transition: all 0.1s;
+        }
+
+        button:active {
+            transform: translateY(5px);
+            box-shadow: 0px 0px 0px #e67e22;
+        }
+        
+        button:disabled {
+            background-color: #95a5a6;
+            box-shadow: 0px 5px 0px #7f8c8d;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="dice-container">
+        <div class="die" id="die1">?</div>
+        <div class="die" id="die2">?</div>
+        <div class="die" id="die3">?</div>
+        <div class="die" id="die4">?</div>
+        <div class="die" id="die5">?</div>
+        <div class="die" id="die6">?</div>
+    </div>
+
+    <button id="rollBtn" onclick="rollDice()">HODIT KOSTKAMI</button>
+
+    <script>
+        // JavaScript: Tady je hloupý mozek frontendu (animace a náhodná čísla)
+        function rollDice() {
+            const diceElements = document.querySelectorAll('.die');
+            const button = document.getElementById('rollBtn');
+            
+            // Zakážeme tlačítko, aby hráč neklikal jako blázen během animace
+            button.disabled = true;
+            button.innerText = "HÁZÍM...";
+
+            // Zapneme CSS animaci (točení) na všech kostkách
+            diceElements.forEach(die => {
+                die.classList.add('rolling');
+                die.innerText = ""; // Během točení schováme čísla
+            });
+
+            // Režisérská pauza! Počkáme 1 vteřinu (1000 milisekund) a pak ukážeme výsledek
+            setTimeout(() => {
+                diceElements.forEach(die => {
+                    // Vypneme animaci točení
+                    die.classList.remove('rolling');
+                    
+                    // Vygenerujeme náhodné číslo od 1 do 6 (Tohle nám pak v budoucnu bude posílat tvá Java!)
+                    const randomNum = Math.floor(Math.random() * 6) + 1;
+                    die.innerText = randomNum;
+                });
+
+                // Znovu zapneme tlačítko
+                button.disabled = false;
+                button.innerText = "HODIT ZNOVU";
+            }, 1000); 
+        }
+    </script>
+</body>
+</html>
