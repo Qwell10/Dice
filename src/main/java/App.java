@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class App {
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
         DicePickingService dicePickingService = new DicePickingService();
@@ -26,25 +25,24 @@ public class Main {
         while (player1.getScore() < 6000 && player2.getScore() < 6000) {
             for (Player player : players) {
 
-                System.out.println(player.getName() + " score: " + player.getScore() + "\n");
-                pause();
+                int turnScore = 0;
+                int diceCount = 6;
+                boolean turnContinue = true;
 
-                List<Integer> rolledDice = dicePickingService.rollDice(6);
-                System.out.println(rolledDice);
+                while (turnContinue) {
+                    System.out.println("\n ---" + player.getName() + " ---");
+                    List<Integer> rolledDice = dicePickingService.rollDice(diceCount);
+                    System.out.println("You rolled: " + rolledDice);
 
-                if (validation.isRollScorable(rolledDice)) {
-                    dicePickingService.chooseDiceToScore(rolledDice, player.getPickedDice(), sc);
+                    if (validation.isRollScorable(rolledDice)) {
+                        //todo( choosing dice )
+                    } else {
+                        System.out.println("No dice to score.");
+                        turnScore = 0;
+                        turnContinue = false;
+                    }
 
-                }else System.out.println("You failed");
-
-                System.out.println();
-
-
-           //     int score = scoringService.calculateScore(player.getPickedDice());
-
-           //     player.setScore(player.getScore() + score);
-
-           //     System.out.println("You scored: " + score);
+                }
             }
         }
     }
@@ -58,3 +56,4 @@ public class Main {
         }
     }
 }
+

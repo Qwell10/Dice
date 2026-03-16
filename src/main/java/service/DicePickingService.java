@@ -22,6 +22,7 @@ public class DicePickingService {
 
     public void chooseDiceToScore(List<Integer> rolledDice, List<Integer> pickedDice, Scanner sc) {
         while (!rolledDice.isEmpty()) {
+            System.out.println(rolledDice);
 
             int result = saveOneDieToPocket(rolledDice, pickedDice, sc);
 
