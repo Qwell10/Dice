@@ -22,8 +22,6 @@ public class DicePickingService {
 
     public void chooseDiceToScore(List<Integer> rolledDice, List<Integer> pickedDice, Scanner sc) {
         while (!rolledDice.isEmpty()) {
-            System.out.println(rolledDice);
-
             int result = saveOneDieToPocket(rolledDice, pickedDice, sc);
 
             if (result == 0) {
@@ -51,7 +49,7 @@ public class DicePickingService {
 
     public int pickDie(List<Integer> rolledDice, Scanner sc) {
         while (true) {
-            System.out.println("\nPick a die (or type 'N' to stop): ");
+            System.out.println("Pick a die (or type 'N' to stop): ");
             String pick = sc.nextLine();
 
             if (pick.equalsIgnoreCase("n")) {

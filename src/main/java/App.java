@@ -30,12 +30,17 @@ public class App {
                 boolean turnContinue = true;
 
                 while (turnContinue) {
-                    System.out.println("\n ---" + player.getName() + " ---");
+                    System.out.println("\n --- " + player.getName() + " ---");
+                    System.out.println("Score: " + player.getScore() + "\n -----------------------------");
+                    pause();
+
                     List<Integer> rolledDice = dicePickingService.rollDice(diceCount);
                     System.out.println("You rolled: " + rolledDice);
 
                     if (validation.isRollScorable(rolledDice)) {
-                        //todo( choosing dice )
+                        pause();
+                        dicePickingService.chooseDiceToScore(rolledDice, player.getPickedDice(), sc);
+                        scoringService.calculateScore(player.getPickedDice());
                     } else {
                         System.out.println("No dice to score.");
                         turnScore = 0;
