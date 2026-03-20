@@ -36,8 +36,9 @@ public class DicePickingService {
 
             if (pickedDie != 0) {
                 pickedDice.add(pickedDie);
-                System.out.printf("You picked: %d%n", pickedDie);
             }
+
+            System.out.println(rolledDice);
 
             return pickedDie;
 

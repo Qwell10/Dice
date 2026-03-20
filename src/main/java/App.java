@@ -32,21 +32,22 @@ public class App {
                 while (turnContinue) {
                     System.out.println("\n --- " + player.getName() + " ---");
                     System.out.println("Score: " + player.getScore() + "\n -----------------------------");
-                    pause();
 
                     List<Integer> rolledDice = dicePickingService.rollDice(diceCount);
                     System.out.println("You rolled: " + rolledDice);
 
                     if (validation.isRollScorable(rolledDice)) {
-                        pause();
                         dicePickingService.chooseDiceToScore(rolledDice, player.getPickedDice(), sc);
-                        scoringService.calculateScore(player.getPickedDice());
+                        turnScore += scoringService.calculateScore(player.getPickedDice());
+                        System.out.println("Turn Score: " + turnScore);
+                        diceCount =- player.getPickedDice().size();
+
                     } else {
-                        System.out.println("No dice to score.");
+                        System.out.println("--- NO DICE TO SCORE ---");
                         turnScore = 0;
                         turnContinue = false;
+                        pause();
                     }
-
                 }
             }
         }
