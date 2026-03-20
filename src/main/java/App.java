@@ -31,16 +31,38 @@ public class App {
 
                 while (turnContinue) {
                     System.out.println("\n --- " + player.getName() + " ---");
-                    System.out.println("Score: " + player.getScore() + "\n -----------------------------");
+                    System.out.println("Score: " + player.getScore());
+                    System.out.println("TurnScore: " + turnScore + "\n -----------------------------");
 
                     List<Integer> rolledDice = dicePickingService.rollDice(diceCount);
                     System.out.println("You rolled: " + rolledDice);
 
                     if (validation.isRollScorable(rolledDice)) {
                         dicePickingService.chooseDiceToScore(rolledDice, player.getPickedDice(), sc);
+
                         turnScore += scoringService.calculateScore(player.getPickedDice());
+                        player.getPickedDice().clear();
                         System.out.println("Turn Score: " + turnScore);
-                        diceCount =- player.getPickedDice().size();
+
+                        diceCount = rolledDice.size();
+
+                        if (diceCount == 0) {
+                            System.out.println("--- HOT DICE ---");
+                            System.out.println("You can roll Again");
+                            pause();
+                            diceCount = 6;
+                        }
+
+                        System.out.println("Do you want to [R]oll again with " + diceCount + " dice or [S]top with score: " + turnScore + ". [Type R/S]");
+                        String choice = sc.nextLine();
+
+                        if (!choice.equalsIgnoreCase("R")) {
+                            player.setScore(player.getScore() + turnScore);
+                            System.out.println("\n --- " + player.getName() + " ---");
+                            System.out.println("Score: " + player.getScore() + "\n -----------------------------");
+
+                            turnContinue = false;
+                        }
 
                     } else {
                         System.out.println("--- NO DICE TO SCORE ---");
